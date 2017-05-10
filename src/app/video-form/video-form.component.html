@@ -1,0 +1,45 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-6 col-sm-offset-3">
+		 <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Add Video</h3>
+      </div>
+      <div class="modal-body">
+         <div >
+		    <form #videoForm='ngForm' (ngSubmit)='formSubmit($event, videoForm)'>
+		      <div class="form-group">
+		        <label for="name">Name</label>
+		        
+		               <input type="text" class="form-control" name="q" [(ngModel)]="videoName" >
+		      </div>
+		      <div class="form-group">
+		        <label for="slug">Slug</label>
+		        <input type="text" class="form-control" id="slug"
+		               name="slug" [(ngModel)]="slug" >
+		      </div>
+
+		      <div class="form-group">
+		        <label for="slug">Embed Id</label>
+		        <input type="text" class="form-control" id="embedId"
+		               name="embedId" [(ngModel)]="embedId">
+		      </div>
+
+
+		      <div class="form-group">
+		       
+		       <button type="submit" class="btn btn-primary">Submit</button>
+		      </div>
+		    </form>
+		  </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+		</div>
+	</div>
+</div>
+
