@@ -1,45 +1,68 @@
-<div class="container">
-	<div class="row">
-		<div class="col-sm-6 col-sm-offset-3">
-		 <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title">Add Video</h3>
-      </div>
-      <div class="modal-body">
-         <div >
-		    <form #videoForm='ngForm' (ngSubmit)='formSubmit($event, videoForm)'>
-		      <div class="form-group">
-		        <label for="name">Name</label>
-		        
-		               <input type="text" class="form-control" name="q" [(ngModel)]="videoName" >
-		      </div>
-		      <div class="form-group">
-		        <label for="slug">Slug</label>
-		        <input type="text" class="form-control" id="slug"
-		               name="slug" [(ngModel)]="slug" >
-		      </div>
-
-		      <div class="form-group">
-		        <label for="slug">Embed Id</label>
-		        <input type="text" class="form-control" id="embedId"
-		               name="embedId" [(ngModel)]="embedId">
-		      </div>
-
-
-		      <div class="form-group">
-		       
-		       <button type="submit" class="btn btn-primary">Submit</button>
-		      </div>
-		    </form>
+<div class="row">
+	
+	<div class="col-md-3">
+		<div class="modal-dialog" role="document">
+	    <div class="modal-content">
+		    <div class="modal-header">
+		      <h3 class="modal-title">Add Video</h3>
+		    </div>
+		    <div class="modal-body">
+		      <div>
+				    <form #videoForm='ngForm' (ngSubmit)='formSubmit($event, videoForm)'>
+				      <div class="form-group">
+				        <label for="name">Name</label>
+				        <input type="text"  class="form-control" required minlength="4" maxlength="24" name="q" [(ngModel)]="videoName" #name="ngModel">
+				      </div>
+				      <div *ngIf="name.errors && (name.dirty || name.touched)" class="alert alert-danger">
+						    <div [hidden]="!name.errors.required">
+						      Name is required
+						    </div>
+						    <div [hidden]="!name.errors.minlength">
+						      Name must be at least 4 characters long.
+						    </div>
+						    <div [hidden]="!name.errors.maxlength">
+						      Name cannot be more than 24 characters long.
+						    </div>
+							</div>
+				      <div class="form-group">
+				        <label for="slug">Slug</label>
+				        <input type="text" class="form-control" required minlength="4" maxlength="24" id="slug" name="slug" [(ngModel)]="slug" #link="ngModel">
+				      </div>
+				      <div *ngIf="link.errors && (link.dirty || link.touched)" class="alert alert-danger">
+						    <div [hidden]="!link.errors.required">
+						      link is required
+						    </div>
+						    <div [hidden]="!link.errors.minlength">
+						      link must be at least 4 characters long.
+						    </div>
+						    <div [hidden]="!link.errors.maxlength">
+						      link cannot be more than 24 characters long.
+						    </div>
+							</div>
+				      <div class="form-group">
+				        <label for="slug">Embed Id</label>
+				        <input type="text"  #eId class="form-control" id="embedId" name="embedId" [(ngModel)]="embedId">
+				      </div>
+				    	<div class="form-group">
+				      	<button type="submit" class="btn btn-primary" (click)="onAddItem(name,eId )" >Submit</button>
+				      </div>
+			    	</form>
+			  	</div>
+		    </div> 
 		  </div>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </div>
-  </div>
 		</div>
 	</div>
 </div>
+<div>
+	<h2>Videos</h2>
+	<ul  *ngFor="let list of listVideos;let i = index">
+ 		<li *ngIf="list.name">{{list.name}}
+ 			<button type="submit" class="btn btn-primary" (click)="onRemoveItem(i)" >Remove</button>
+ 			<div style="position: relative;height: 0;padding-bottom: 30%" *ngIf='list.embedId'><iframe width="760" height="315" [src]="getEmbedUrl(list) | safe" frameborder="0" allowfullscreen></iframe></div>
+ 		</li>
+	</ul>
+	</div>
+
+
+
 

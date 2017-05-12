@@ -9,26 +9,26 @@ import { VideoFormComponent } from './video-form/video-form.component';
 
 
 const appRoutes: Routes = [
-{
-	path: "",
-	component: HomeComponent,
-},
-{
-	path: "videos",
-	component: VideoListComponent,
-},
-{
-	path: "search",
-	component: SearchDetailComponent,
-},
-{
-	path: "videos/:slug",
-	component: VideoDetailComponent,
-},
-{
-	path: "video/form",
-	component: VideoFormComponent,
-}
+	{
+		path: "",
+		component: HomeComponent,
+	},
+	{
+		path: "videos",
+		component: VideoListComponent,
+	},
+	{
+		path: "search",
+		component: SearchDetailComponent,
+	},
+	{
+		path: "videos/:slug",
+		component: VideoDetailComponent,
+	},
+	{
+		path: "video/form",
+		component: VideoFormComponent,
+	}
 ]
 
 @NgModule({
